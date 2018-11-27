@@ -4,8 +4,6 @@ Welcome to this builder session!
 
 We are going to deploy an image classifier using deep learning model, MXNet model server and ECS on top of EC2 Fleet and EC2 AutoScaling. The very cool thing is the [EC2 Spot Instances](https://aws.amazon.com/ec2/spot/) we are using is at savings of up to 90% the On-Demand price.
 
-![kitten](https://s3.amazonaws.com/model-server/inputs/kitten.jpg)
-
 Prerequisites:
 * [AWS account ready](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 * [AWS CLI configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
@@ -66,7 +64,7 @@ Please go to [ECS Console](https://us-east-2.console.aws.amazon.com/ecs), and cl
 
 ## 3. Create ECS task definition for MXNet Model Server
 
-Please open up terminal and download the *ecs_task_definition.json* file from this repo. Then, let's execute following command to create ECS task definition.
+Please open up terminal and download the *ecs_task_definition.json* file from this repo. Then, let's execute following command to create ECS task definition. [More information about MXNet Model Server](https://github.com/awslabs/mxnet-model-server).
 
 ```
 aws ecs register-task-definition --cli-input-json file://ecs_task_definiton.json --region us-east-2
@@ -123,9 +121,10 @@ curl ec2fleet-builder-session-1961154273.us-east-2.elb.amazonaws.com/ping
 
 ![test_2](images/6_2.png)
 
-6.3 Let's test with the kitten image. Please download the image first from this page.
+6.3 Let's test with the a sample image. 
 
 ```
+Cat 3: curl -o kitten.jpg https://s3.amazonaws.com/model-server/inputs/kitten.jpg
 curl -X POST ec2fleet-builder-session-1961154273.us-east-2.elb.amazonaws.com/predictions/squeezenet_v1.1 -F "data=@kitten.jpg"
 ```
 
