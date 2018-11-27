@@ -5,14 +5,17 @@ Welcome to this builder session!
 We are going to deploy an image classifier using deep learning model, MXNet model server and ECS on top of EC2 Fleet and EC2 AutoScaling. The very cool thing is the [EC2 Spot Instances](https://aws.amazon.com/ec2/spot/) we are using is at savings of up to 90% the On-Demand price.
 
 Prerequisites:
-* [AWS account ready](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
+
+* To complete this builder session, you need access to an AWS account with administrative permissions. An IAM user with administrator access (arn:aws:iam::aws:policy/AdministratorAccess) will do nicely. [More information](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 * [AWS CLI configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+
+Notes:
+
+* The console links provided throughout the demo are in US East(Ohio, us-east-2).
 
 ## 1. Create ECS Cluster
 
-Create cluster with one spot instances. Please don't worry that we only launch one instance, we are going to add an autoscaling group later in a moment. This is to demonstrate multiple ways to launch Spot instances. [Console link](
-https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters
-).
+Create cluster with one spot instances in [ECS Console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters). Please don't worry that we only launch one instance, we are going to add an [EC2 AutoScaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in a moment. This is to demonstrate multiple ways to launch Spot instances. 
 
 1.1 Please choose EC2 Linux + Networking
 ![CreateCluster_1](images/1_1.png)
@@ -33,13 +36,13 @@ https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters
 
 2.1 Create Launch template with User Data
 
-We need the instances launched to automatically register with the ECS cluster we created. When you launch an Amazon ECS container instance, you have the option of passing user data to the instance. The data can be used to perform common automated configuration tasks and even run scripts when the instance boots. For Amazon ECS, the most common use cases for user data are to pass configuration information to the Docker daemon and the Amazon ECS container agent. [Console link](https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#CreateTemplate:).
+We need the instances launched to automatically register with the ECS cluster we created. When you launch an Amazon ECS container instance, you have the option of passing user data to the instance. The data can be used to perform common automated configuration tasks and even run scripts when the instance boots. For Amazon ECS, the most common use cases for user data are to pass configuration information to the Docker daemon and the Amazon ECS container agent. [Please visit EC2 LaunchTemplate Console](https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#CreateTemplate:).
 
-You will need the ECS optimized AMI id from [here](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html). Also, please make sure you use the same security group that created for ECS cluster.
+2.1.1 You will need the ECS optimized AMI id from [here](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html). Also, please make sure you use the same security group that created for ECS cluster.
 
 ![CreateLaunchTemplate](images/2_1.png)
 
-Please expand *Advanced details* tab and go to *User data* section. Please choose the *IAM instance profile* for ECS cluster and add *User data*.
+2.2.2 Please expand *Advanced details* tab and go to *User data* section. Please choose the *IAM instance profile* for ECS cluster and add *User data*.
 
 ```
 #!/bin/bash
@@ -53,7 +56,7 @@ Please go to the [EC2 Console](https://us-east-2.console.aws.amazon.com/ec2), an
 
 ![Scale_1](images/2_3.png)
 
-Next step we are going to use the latest feature launched this month - [EC2 Auto Scaling Groups With Multiple Instance Types & Purchase Options](https://aws.amazon.com/blogs/aws/new-ec2-auto-scaling-groups-with-multiple-instance-types-purchase-options/)
+Next step we are going to use [EC2 Auto Scaling Groups With Multiple Instance Types & Purchase Options](https://aws.amazon.com/blogs/aws/new-ec2-auto-scaling-groups-with-multiple-instance-types-purchase-options/)
 ![Scale_2](images/2_4.png)
 
 2.3 Check ECS instances registration
@@ -70,13 +73,13 @@ Please open up terminal and download the *ecs_task_definition.json* file from th
 aws ecs register-task-definition --cli-input-json file://ecs_task_definiton.json --region us-east-2
 ```
 
-After this command successfully finishes, let's check the created ECS task definition in the [console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/taskDefinitions).  
+After this command successfully finishes, let's check the created ECS task definition in the [ECS console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/taskDefinitions).  
 
 ![task_1](images/3_1.png)
 
 ## 4. Create Load Balancer
 
-Please go to the load balancer [console](https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#LoadBalancers:), and click *Create Load Balancer*.
+Please go to the load balancer [ELB console](https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#LoadBalancers:), and click *Create Load Balancer*.
 
 4.1 Choose the *Application Loader Balancer*.
 
@@ -91,7 +94,7 @@ Please go to the load balancer [console](https://us-east-2.console.aws.amazon.co
 
 ## 5. Deploy the service
 
-5.1 Please go to the ECS [console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/taskDefinitions/ec2-fleet-builder-session/1), select the task definition that we created earlier, and click *Create Service*.
+5.1 Please go to the [ECS console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/taskDefinitions/ec2-fleet-builder-session/1), select the task definition that we created earlier, and click *Create Service*.
 
 ![service_1](images/5_1.png)
 
