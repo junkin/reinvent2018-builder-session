@@ -1,19 +1,19 @@
 # Building High-Scale Web Apps on Amazon EC2 Fleet
 
-Welcome to this builder session! 
+*Welcome to this builder session!*
 
 We are going to deploy an image classifier using deep learning model, MXNet model server and ECS on top of EC2 Fleet and EC2 AutoScaling. The very cool thing is the [EC2 Spot Instances](https://aws.amazon.com/ec2/spot/) we are using is at savings of up to 90% the On-Demand price.
 
-Prerequisites:
+***Prerequisites***:
 
 * To complete this builder session, you need access to an AWS account with administrative permissions. An IAM user with administrator access (arn:aws:iam::aws:policy/AdministratorAccess) will do nicely. [More information](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 * [AWS CLI configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 
-Notes:
+***Notes***:
 
 * The console links provided throughout the demo are in US East(Ohio, us-east-2).
 
-Table of contents:
+***Table of contents***:
 
    * [Building High-Scale Web Apps on Amazon EC2 Fleet](#building-high-scale-web-apps-on-amazon-ec2-fleet)
       * [1. Create ECS Cluster](#1-create-ecs-cluster)
@@ -23,7 +23,7 @@ Table of contents:
       * [5. Deploy the service](#5-deploy-the-service)
       * [6. Test](#6-test)
       * [Summary](#summary)
-      
+
 ## 1. Create ECS Cluster
 
 Create cluster with one spot instances in [ECS Console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters). Please don't worry that we only launch one instance, we are going to add an [EC2 AutoScaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in a moment. This is to demonstrate multiple ways to launch Spot instances. 
@@ -156,9 +156,12 @@ In this session, you have successfully deployed an image classifier on EC2 Fleet
 
 You can further explore this topic with following links.
 
-[0] [EC2 AutoScaling purchase options](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html#asg-purchase-options)
+[1] [EC2 AutoScaling purchase options](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html#asg-purchase-options)
 
-[1] [More models to try out at MXNet model zoo](https://github.com/awslabs/mxnet-model-server/blob/master/docs/model_zoo.md)
+[2] [EC2 Fleet](https://aws.amazon.com/blogs/aws/ec2-fleet-manage-thousands-of-on-demand-and-spot-instances-with-one-request/)
 
-[2] [TensorFlow serving](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-tfserving.html)
+[3] [More models to try out at MXNet model zoo](https://github.com/awslabs/mxnet-model-server/blob/master/docs/model_zoo.md)
 
+[4] [Another model server - TensorFlow serving](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-tfserving.html)
+
+[5] [SqueezeNet](https://arxiv.org/abs/1602.07360)
