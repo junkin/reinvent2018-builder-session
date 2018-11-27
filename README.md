@@ -13,6 +13,17 @@ Notes:
 
 * The console links provided throughout the demo are in US East(Ohio, us-east-2).
 
+Table of contents:
+
+   * [Building High-Scale Web Apps on Amazon EC2 Fleet](#building-high-scale-web-apps-on-amazon-ec2-fleet)
+      * [1. Create ECS Cluster](#1-create-ecs-cluster)
+      * [2. Scale the ECS Cluster](#2-scale-the-ecs-cluster)
+      * [3. Create ECS task definition for MXNet Model Server](#3-create-ecs-task-definition-for-mxnet-model-server)
+      * [4. Create Load Balancer](#4-create-load-balancer)
+      * [5. Deploy the service](#5-deploy-the-service)
+      * [6. Test](#6-test)
+      * [Summary](#summary)
+      
 ## 1. Create ECS Cluster
 
 Create cluster with one spot instances in [ECS Console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters). Please don't worry that we only launch one instance, we are going to add an [EC2 AutoScaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in a moment. This is to demonstrate multiple ways to launch Spot instances. 
