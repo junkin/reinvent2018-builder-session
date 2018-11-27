@@ -155,6 +155,8 @@ ab -c 200 -n 20000 -T 'image/jpeg' -p kitten.jpg ec2fleet-builder-session-196115
 
 In this session, you have successfully deployed an image classifier on EC2 Fleet using EC2 AutoScaling with multiple EC2 instance types & purchase options, and the EC2 instances are at savings of up to 90% the On-Demand price. 
 
+Please complete the session survey in the mobile app. Thank you for attending this session!
+
 You can further explore this topic with following links.
 
 [1] [EC2 AutoScaling purchase options](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html#asg-purchase-options)
