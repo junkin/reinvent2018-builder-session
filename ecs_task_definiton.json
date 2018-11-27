@@ -1,0 +1,48 @@
+{
+  "containerDefinitions": [
+    {
+      "entryPoint": [
+        "/usr/local/bin/dockerd-entrypoint.sh"
+      ],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 8080
+        }
+      ],
+      "command": [
+        "mxnet-model-server",
+        "--start",
+        "--models",
+        "https://s3.amazonaws.com/model-server/models/squeezenet_v1.1/squeezenet_v1.1.model"
+      ],
+      "cpu": 4096,
+      "environment": [],
+      "mountPoints": [],
+      "memory": 4096,
+      "volumesFrom": [],
+      "image": "awsdeeplearningteam/mxnet-model-server:1.0.0-mxnet-cpu",
+      "healthCheck": {
+        "retries": 5,
+        "command": [
+          "curl",
+          "http://127.0.0.1:8080/ping"
+        ],
+        "timeout": 60,
+        "interval": 10,
+        "startPeriod": 20
+      },
+      "essential": true,
+      "name": "mms-spot-demo-ecs"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "7000",
+  "family": "ec2-fleet-builder-session",
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "cpu": "4096",
+  "volumes": []
+}
