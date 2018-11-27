@@ -78,7 +78,8 @@ Please go to [ECS Console](https://us-east-2.console.aws.amazon.com/ecs), and cl
 
 ## 3. Create ECS task definition for MXNet Model Server
 
-Please open up terminal and download the *ecs_task_definition.json* file from this repo. Then, let's execute following command to create ECS task definition. [More information about MXNet Model Server](https://github.com/awslabs/mxnet-model-server).
+Please open up terminal and download the *ecs_task_definition.json* file from this repo. Then, let's execute following command to create ECS task definition. Model Server for Apache MXNet (MMS) is a flexible and easy to use tool for serving deep learning models exported from [MXNet](http://mxnet.io/) or the Open Neural Network Exchange ([ONNX](http://onnx.ai/)).
+[More information about MXNet Model Server](https://github.com/awslabs/mxnet-model-server).
 
 ```
 aws ecs register-task-definition --cli-input-json file://ecs_task_definiton.json --region us-east-2
