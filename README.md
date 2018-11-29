@@ -26,22 +26,19 @@ We are going to deploy an image classifier using deep learning model(SqueezeNet)
 
 Amazon Elastic Container Service[(Amazon ECS](https://aws.amazon.com/ecs/)) is a highly scalable, high-performance container orchestration service that supports Docker containers and allows you to easily run and scale containerized applications on AWS. 
 
-Please create cluster with two EC2 Spot instances in [ECS Console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters). Please don't worry that we only launch one instance, we are going to add an [EC2 AutoScaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in a moment. This is to demonstrate multiple ways to launch EC2 Spot instances for scalable web apps. 
+Please create cluster with two EC2 Spot instances in [ECS Console](https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters). Please don't worry that we only launch two instances, we are going to add an [EC2 AutoScaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in a moment. This is to demonstrate multiple ways to launch EC2 Spot instances for scalable web apps. 
 
 1.1 Please choose EC2 Linux + Networking
 ![CreateCluster_1](images/1_1.png)
 
-1.2 Select *Spot* for Provisioning Model and EC2 Instance Types
+1.2 Please select *Spot* for Provisioning Model and EC2 Instance Types. Please also select a key pair, so we can SSH into the EC2 instances for debugging.
 ![CreateCluster_2](images/1_2.png)
 
-1.3 Select a key pair, so we can SSH into the EC2 instances for debugging.
-![CreateCluster_3](images/1_3.png)
-
-1.4 Adding a third subnet to the VPC for the advantage of diversification across multiple availability zones to achieve high availability
+1.3 Please add a third subnet to the VPC for the advantage of diversification across multiple availability zones to achieve high availability
 
 ![CreateCluster_4](images/1_4.png)
 
-1.5 Please click 'Create', then ECS will create VPC, subnets, and one instances for the cluster.
+1.4 Please click 'Create', then ECS will create VPC, subnets, and one instances for the cluster.
 
 ## 2. Create ECS task definition for MXNet Model Server
 
@@ -60,15 +57,15 @@ After this command successfully finishes, let's check the created ECS task defin
 
 Please go to the load balancer [ELB console](https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#LoadBalancers:), and click *Create Load Balancer*.
 
-3.1 Choose the *Application Loader Balancer*.
+3.1 Please choose the *Application Loader Balancer*.
 
 ![lb_1](images/3_1.png)
 
-3.2 Choose the VPC that ECS created earlier for us, and select all the subnets available.
+3.2 Please choose the VPC that ECS created earlier for us, and select all the subnets available.
 
 ![lb_2](images/3_2.png)
 
-3.3 Create through the wizard, and create a *Target Group* for routing.
+3.3 Please click through the wizard, and create a *Target Group* for routing.
 ![lb_3](images/3_3.png)
 
 3.4 After the ELB creation succeed, please note down the DNS name for testing later.
@@ -80,11 +77,11 @@ Please go to the load balancer [ELB console](https://us-east-2.console.aws.amazo
 
 ![service_1](images/4_1.png)
 
-4.2 Choose the ECS Cluster that we created earlier, and *Launch Type* as *EC2*.
+4.2 Please choose the ECS Cluster that we created earlier, and *Launch Type* as *EC2*.
 
 ![service_2](images/4_2.png)
 
-4.3 In the next step, choose *Load balancer type* as *Application Load Balancer*, and select the LB created earlier.
+4.3 In the next step, please choose *Load balancer type* as *Application Load Balancer*, and select the LB created earlier.
 
 ![service_3](images/4_3.png)
 
