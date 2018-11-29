@@ -21,7 +21,9 @@ We are going to deploy an image classifier using deep learning model(SqueezeNet)
       * [4. Deploy the service](#4-deploy-the-service)
       * [5. Test](#5-test)
       * [6. Scale the Amazon ECS Cluster](#6-scale-the-amazon-ecs-cluster)
+      * [7. Clean up](#7-clean-up)
       * [Summary](#summary)
+
 ## 1. Create Amazon ECS Cluster
 
 Amazon Elastic Container Service[(Amazon ECS](https://aws.amazon.com/ecs/)) is a highly scalable, high-performance container orchestration service that supports Docker containers and allows you to easily run and scale containerized applications on AWS. 
@@ -151,6 +153,14 @@ Please go to [ECS Console](https://us-east-2.console.aws.amazon.com/ecs), and cl
 ```
 ab -c 200 -n 20000 -T 'image/jpeg' -p kitten.jpg ec2fleet-builder-session-1961154273.us-east-2.elb.amazonaws.com/predictions/squeezenet_v1.1
 ```
+
+## 7. Clean up
+
+7.1 Please delete ELB and target group created in this session.
+
+7.2 Please delete ECS cluster created in this session.
+
+7.3 Please delete Auto Scaling Group created in this session.
 
 ## Summary
 
