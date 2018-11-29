@@ -67,8 +67,11 @@ Please go to the load balancer [ELB console](https://us-east-2.console.aws.amazo
 
 ![lb_2](images/3_2.png)
 
-3.3 Please click through the wizard, and create a *Target Group* for routing.
-![lb_3](images/3_3.png)
+3.3 Please select *Create a new security group*
+![lb_4](images/3_3.png)
+
+3.4 Please click through the wizard, and create a *Target Group* for routing. Please use '/ping' as the path for health checks.
+![lb_4](images/3_4.png)
 
 3.4 After the ELB creation succeed, please note down the DNS name for testing later.
 ![lb_4](images/5_1.png)
